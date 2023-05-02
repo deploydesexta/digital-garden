@@ -34,8 +34,6 @@ services:
     restart: on-failure
     volumes:
 	  - ./es/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-    environment:
-      - "discovery.type=single-node"
     ports:
       - '9200:9200'
       - '9300:9300'
@@ -43,25 +41,34 @@ services:
 
 com o seguinte arquivo de configuração:
 ```yml
-cluster.name: foo-cluster  
+bootstrap.memory_lock: true  
+  
+cluster.name: codeflix  
+  
+discovery.type: single-node  
   
 node.name: es01  
   
-network:  
-  host: 0.0.0.0
+transport:  
+  host: 0.0.0.0  
+  
+http:  
+  host: 0.0.0.0  
   
 path:  
   data: /usr/share/elasticsearch/data  
-  logs: /usr/share/elasticsearch/log
-
-xpack.security.enabled: true # flag importante para evitar erro de /usr/share/elasticsearch/config/elasticsearch.yml: Device or resource busy
+  logs: /usr/share/elasticsearch/log  
+  
+xpack:  
+  license.self_generated.type: trial  
+  security.enabled: true # flag importante para evitar erro de /usr/share/elasticsearch/config/elasticsearch.yml: Device or resource busy
 ```
 
 > Para usar normalmente no mabiente de desenvolvimento não é necessário passar um arquivo de configuração, mas como vamos explorar através dos aprendizados do livro, estou deixando esse arquivo com o básico da configuração.
 
 Para verificar se o Elasticsearch está de pé e pronto para uso, basta executar o curl abaixo:
 ```sh
-curl 'http://localhost:9200/?pretty'
+curl 'http://elastic:elastic@localhost:9200/?pretty'
 ```
 
 Como resposta deve-se observar um JSON parecido com esse:
