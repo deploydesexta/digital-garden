@@ -1,4 +1,3 @@
-
 # CIDR (Class Inter Domain Router), IPs Públicos e Privados
 
 -   Método para alocação de IPv4s;

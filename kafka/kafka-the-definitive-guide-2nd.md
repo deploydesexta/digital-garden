@@ -6,7 +6,7 @@
 
 Cada tópico do Kafka é subdividido em partições. Os produtores escrevem na cauda das partições e os consumidores lêem a partir da cabeça. O Kafka escala o consumo de um tópico distribuindo as partições entre um _consumer group_, que é uma coleção de consumidores dividindo um único identificador de grupo.
 
-![Consumers vs Partitions](kafka-consumers-vs-partitions.png)
+![Consumers vs Partitions](/assets/kafka-the-definitive-guide-2nd/kafka-consumers-vs-partitions.png)
 No exemplo acima temos três partições no tópico e foram dividas entre dois consumidores em um único grupo, onde o consumidor 1 assumiu a partição 0 e 1 e o consumidor 2 ficou com a partição 2.
 
 ## Simples exemplo de consumidor
@@ -44,7 +44,7 @@ Para a maioria dos casos, ler e processar as mensagens em uma única thread é O
 
 Nesse ambiente multi-threaded, o consumidor principal do Kafka delega o processamento dos eventos obtidos no `poll` para outras _threads_.
 
-![Consumers vs Partitions](kafka-multithreaded-consumer.png)
+![Consumers vs Partitions](/assets/kafka-the-definitive-guide-2nd/kafka-multithreaded-consumer.png)
 
 Para garantir ordem no processamento, é necessário pausar as partições através do `KafkaConsumer.pause` .
 
@@ -54,11 +54,11 @@ Para garantir ordem no processamento, é necessário pausar as partições atrav
 
 É possível sim acontecer de seu consumer ler mensagens duplicadas por conta de _rebalance_ de _partitions._
 
-![Consumers vs Partitions](kafka-topic-rebalance.png)
+![Consumers vs Partitions](/assets/kafka-the-definitive-guide-2nd/kafka-topic-rebalance.png)
 
 Perda de mensagens
 
-![Consumers vs Partitions](kafka-lost-messages.png)
+![Consumers vs Partitions](/assets/kafka-the-definitive-guide-2nd/kafka-lost-messages.png)
 
 ## Lidando com throttling de mensagens
 
